@@ -16,13 +16,8 @@ class Route extends Model
         'destination', 'class', 'price'
     ];
 
-    public function getRouteKeyName()
+    public function passengers(): BelongsToMany
     {
-        return 'code_route';
-    }
-
-    public function travel(): BelongsToMany
-    {
-        return $this->belongsToMany(Travel::class);
+        return $this->belongsToMany(Passenger::class);
     }
 }

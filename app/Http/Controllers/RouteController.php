@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Passenger;
 use App\Models\Route;
+use App\Models\Travel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -14,6 +16,11 @@ class RouteController extends Controller
         return view('routes.index', ['routes' => Route::paginate(6)]);
     }
 
+    public function passengersRoute(Route $route): View
+    {
+        return view('routes.index', ['passengers' => $route->travel()->passengers()]);
+    }
+
     public function create(): View
     {
         return view('routes.store');
@@ -21,14 +28,12 @@ class RouteController extends Controller
 
     public function update(Route $route): View
     {
-        $route = Route::where('code_route', $route);
-        dd($route->code-route);
-        return view('routes.update', $route);
+        return view('routes.update', ['route' => $route]);
     }
 
-    public function destroy($route): RedirectResponse
+    public function destroy(Route $route): RedirectResponse
     {
-        Route::where('code_route', $route)->delete();
+        $route->delete();
 
         return redirect()->route('routes');
     }
@@ -42,8 +47,38 @@ class RouteController extends Controller
 
     public function patch(Request $request, Route $route): RedirectResponse
     {
-        $route->update($request->all());
+        $route->update([
+            'destination' => $request->destination,
+            'class' => $request->class,
+            'price' => $request->price
+        ]);
 
         return redirect()->route('routes');
     }
+
+    public function show(Route $route): View
+    {
+        $passengers = Passenger::whereNotIn('id', $route->passengers()->pluck('passenger_id'))->get();
+        return view('routes.relation', ['route_pass' => $passengers, 'route' => $route]);
+    }
+
+    public function addToRoute(Request $request, Route $route): RedirectResponse
+    {
+        Travel::create([
+            'passenger_id' => $request->id_user,
+            'route_id' => $route->id,
+        ]);
+
+        return redirect()->route('singleRoute', ['route' => $route]);
+    }
+
+    public function deleteFromRoute(Request $request, Route $route): RedirectResponse
+    {
+        Travel::where([
+            'passenger_id' => $request->id_user,
+            'route_id' => $route->id,
+        ])->delete();
+        return redirect()->route('singleRoute', ['route' => $route]);
+    }
+
 }

@@ -7,7 +7,7 @@
             <span class="input-group-text">Destination of the route</span>
             <input type="text" aria-label="Last name" class="form-control" name="destination">
             <span class="input-group-text">Class</span>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="class">
                 <option value="I">I</option>
                 <option value="II">II</option>
                 <option value="III">III</option>

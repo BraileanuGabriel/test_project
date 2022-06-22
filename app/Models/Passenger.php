@@ -15,8 +15,8 @@ class Passenger extends Model
         'first_name', 'last_name', 'contact'
     ];
 
-    public function travel(): BelongsToMany
+    public function routes(): BelongsToMany
     {
-        return $this->belongsToMany(Travel::class);
+        return $this->belongsToMany(Route::class);
     }
 }

@@ -10,13 +10,9 @@ class Travel extends Model
 {
     use HasFactory;
 
-    public function routes(): HasMany
-    {
-        return $this->hasMany(Route::class);
-    }
+    protected $fillable = [
+        'passenger_id', 'route_id'
+    ];
 
-    public function passengers(): HasMany
-    {
-        return $this->hasMany(Passenger::class);
-    }
+    protected $table = 'passenger_route';
 }

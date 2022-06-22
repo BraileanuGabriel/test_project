@@ -1,25 +1,29 @@
 @extends('app')
 
 @section('content')
-    <main class="px-12" style="width: 150%">
-        <a type="button" class="btn btn-outline-primary" href="{{ route('showStoreRoute') }}">add new route</a>
-            <div class="row">
-                @foreach($routes as $route)
-                    <div class="col-sm-4">
-                        <div class="card-header py-3">
-                            <h4 class="my-0 fw-normal">{{ $route->destination }}</h4>
-                        </div>
-                        <div class="card-body">
-                            <h1 class="card-title pricing-card-title">{{ $route->price }} <small class="text-muted fw-light">lei/kg</small></h1>
-                            <div class="btn-group" role="group">
-                                <a href="{{ route('showUpdateRoute',$route->code_route) }}"><button type="button" id="edit" class="w-100 btn btn-lg btn-outline-primary">Update</button></a>
-                                <form method="post" action="{{ route('destroyRoute',$route->code_route) }}">@csrf<button type="submit" id="fav"  class="w-100 btn btn-lg btn-outline-primary">Delete</button></form>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        <span>{{$routes->links('pagination::bootstrap-5')}}</span>
-    </main>
+    <a type="button" class="btn btn-outline-primary" href="{{ route('showStoreRoute') }}" style="width: 100%">add new route</a>
+    <br>
+    <table id="customers">
+        <tr>
+            <th>Destination</th>
+            <th>Class</th>
+            <th>Price</th>
+            <th>Budget</th>
+            <th>Registred passengers</th>
+            <th>Update route</th>
+            <th>Delete route</th>
+        </tr>
+        @foreach($routes as $route)
+            <tr class="busy">
+                <td>{{$route->destination}}</td>
+                <td>{{$route->class}}</td>
+                <td>{{$route->price}} lei</td>
+                <td>{{count($route->passengers)*$route->price}} lei</td>
+                <td><a type="button" class="btn btn-outline-primary" href="{{ route('singleRoute',$route->id) }}">see route passengers</a></td>
+                <td><a type="button" class="btn btn-outline-primary" href="{{ route('showUpdateRoute',$route->id) }}">Update</a></td>
+                <td><form method="post" action="{{ route('destroyRoute',$route->id) }}">@csrf<button type="submit" style="color: red; border-color: red"  class="btn btn-outline-primary">Delete</button></form></td>
+            </tr>
+        @endforeach
+    </table>
 @endsection
 

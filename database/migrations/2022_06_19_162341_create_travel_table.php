@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('travel', function (Blueprint $table) {
+        Schema::create('passenger_route', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('passenger')->references('code_passenger')->on('passengers')
+            $table->foreignId('passenger_id')->references('id')->on('passengers')
                 ->onDelete('cascade');
-            $table->foreignId('route')->references('code_route')->on('routes')
+            $table->foreignId('route_id')->references('id')->on('routes')
                 ->onDelete('cascade');
             $table->timestamps();
         });
