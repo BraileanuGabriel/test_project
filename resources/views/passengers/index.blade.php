@@ -46,5 +46,6 @@
             </tr>
         @endforeach
     </table>
+    <span>{{$passengers->links('pagination::bootstrap-5')}}</span>
 @endsection
 

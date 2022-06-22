@@ -25,5 +25,6 @@
             </tr>
         @endforeach
     </table>
+    <span>{{$routes->links('pagination::bootstrap-5')}}</span>
 @endsection
 
