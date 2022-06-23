@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Passenger extends Model
+class Competition extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'first_name', 'last_name', 'contact'
+        'name', 'category'
     ];
 
-    public function routes(): BelongsToMany
+    public function sportsmen(): BelongsToMany
     {
-        return $this->belongsToMany(Route::class);
+        return $this->belongsToMany(Sportsman::class);
     }
 }

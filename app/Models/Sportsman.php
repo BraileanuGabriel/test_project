@@ -7,17 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Route extends Model
+class Sportsman extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'destination', 'class', 'price'
+        'first_name', 'last_name', 'gen', 'height', 'weight', 'age', 'competition_id'
     ];
 
-    public function passengers(): BelongsToMany
+    public function competition(): HasOne
     {
-        return $this->belongsToMany(Passenger::class);
+        return $this->hasOne(Competition::class);
     }
 }

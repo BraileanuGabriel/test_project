@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Autogara ♻</title>
+    <title>Sport ♻</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
 
@@ -33,11 +33,11 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="margin: 0 0 0 0; padding: 0 0 0 0">
     <header class="mb-auto">
         <div>
-            <h3 class="float-md-start mb-0">Autogara</h3>
+            <h3 class="float-md-start mb-0">Sport</h3>
             <nav class="nav nav-masthead justify-content-center float-md-end">
                 <a class="nav-link" href="{{ route('home') }}">Home</a>
-                <a class="nav-link" href="{{ route('routes') }}" >Routes</a>
-                <a class="nav-link" href="{{ route('passengers') }}">Passengers</a>
+                <a class="nav-link" href="{{ route('competitions') }}" >Competitions</a>
+                <a class="nav-link" href="{{ route('sportsmen') }}">Sportsmen</a>
             </nav>
         </div>
     </header>

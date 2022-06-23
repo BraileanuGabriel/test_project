@@ -13,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('routes', function (Blueprint $table) {
+        Schema::create('sportsmen', function (Blueprint $table) {
             $table->id();
-            $table->string('destination');
-            $table->enum('class', ['I', 'II', 'III']);
-            $table->integer('price');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('gen');
+            $table->integer('height');
+            $table->integer('weight');
+            $table->integer('age');
+            $table->foreignId('competition_id')->references('id')->on('competitions')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('routes');
+        Schema::dropIfExists('sportsmen');
     }
 };

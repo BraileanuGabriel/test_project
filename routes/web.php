@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\PassengerController;
-use App\Http\Controllers\RouteController;
+use App\Http\Controllers\SportsmanController;
+use App\Http\Controllers\CompetitionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,26 +22,20 @@ Route::get('/', function () {
 Route::group(['prefix' => 'home'], function () {
     Route::get('/', '\App\Http\Controllers\HomeController@index')->name('home');
 
-    Route::get('/routes', [RouteController::class, 'index'])->name('routes');
-    Route::get('/routes/create', [RouteController::class, 'create'])->name('showStoreRoute');
-    Route::post('/routes/create', [RouteController::class, 'store'])->name('storeRoute');
-    Route::post('/routes/{route}', [RouteController::class, 'destroy'])->name('destroyRoute');
-    Route::get('/routes/{route}', [RouteController::class, 'show'])->name('singleRoute');
-    Route::get('/routes/update/{route}', [RouteController::class, 'update'])->name('showUpdateRoute');
-    Route::post('/routes/update/{route}', [RouteController::class, 'patch'])->name('updateRoute');
+    Route::get('/sportsmen', [SportsmanController::class, 'index'])->name('sportsmen');
+    Route::get('/sportsmen/create', [SportsmanController::class, 'create'])->name('showStoreSportsmen');
+    Route::post('/sportsmen/create', [SportsmanController::class, 'store'])->name('storeSportsmen');
+    Route::post('/sportsmen/{sportsman}', [SportsmanController::class, 'destroy'])->name('destroySportsmen');
+    Route::get('/sportsmen/update/{sportsman}', [SportsmanController::class, 'update'])->name('showUpdateSportsmen');
+    Route::post('/sportsmen/update/{sportsman}', [SportsmanController::class, 'patch'])->name('updateSportsmen');
 
-    Route::get('/passengers', [PassengerController::class, 'index'])->name('passengers');
-    Route::get('/passengers/create', [PassengerController::class, 'create'])->name('showStorePassenger');
-    Route::post('/passengers/create', [PassengerController::class, 'store'])->name('storePassenger');
-    Route::post('/passengers/{passenger}', [PassengerController::class, 'destroy'])->name('destroyPassenger');
-    Route::get('/passengers/{passenger}', [PassengerController::class, 'show'])->name('singlePassenger');
-    Route::get('/passengers/update/{passenger}', [PassengerController::class, 'update'])->name('showUpdatePassenger');
-    Route::post('/passengers/update/{passenger}', [PassengerController::class, 'patch'])->name('updatePassenger');
-
-    Route::post('/routes/add/{route}', [RouteController::class, 'addToRoute'])->name('addUserToRoute');
-    Route::post('/routes/delete/{route}', [RouteController::class, 'deleteFromRoute'])->name('deleteUserFromRoute');
-    Route::post('/passengers/add/{passenger}', [PassengerController::class, 'addToUser'])->name('addRouteToUser');
-    Route::post('/passengers/delete/{passenger}', [PassengerController::class, 'deleteFromUser'])->name('deleteRouteFromUser');
+    Route::get('/competitions', [CompetitionController::class, 'index'])->name('competitions');
+    Route::get('/competitions/create', [CompetitionController::class, 'create'])->name('showStoreCompetition');
+    Route::post('/competitions/create', [CompetitionController::class, 'store'])->name('storeCompetition');
+    Route::get('/competitions/{competition}', [CompetitionController::class, 'show'])->name('singleCompetition');
+    Route::post('/competitions/{competition}', [CompetitionController::class, 'destroy'])->name('destroyCompetition');
+    Route::get('/competitions/update/{competition}', [CompetitionController::class, 'update'])->name('showUpdateCompetition');
+    Route::post('/competitions/update/{competition}', [CompetitionController::class, 'patch'])->name('updateCompetition');
 
 });
 
